@@ -38,7 +38,7 @@ shinyServer(
         resVal <-as.character((ok*100/(ok+err)))
         if(sum(cc == "_") == 0){
           resVal<-paste(resVal,"%")
-        }else if(err > 10){
+        }else if(err > 9){
           resVal<-"-1"
         }
         updateTextInput(session, "word",
