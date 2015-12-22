@@ -3,9 +3,9 @@ shinyUI(pageWithSidebar(
   headerPanel("Guess the Word!!"),
   sidebarPanel(    
     tags$script("function getLetter(target){$(target).addClass('disabled');$('#newLetter').val($('#newLetter').val()+$(target).text()+',');$('#newLetter').trigger('keyup')}"),
-    textInput(inputId = "newLetter",value = "",label = "Selected Letters"),
+    textInput(inputId = "newLetter",value = "",label = "Selected Characters"),
     textInput(inputId = "word",value = "",label = "Result (so far!)"),            
-    h4("Please click in the buttons to select the desired letter"),
+    h4("Please click in the buttons to select the desired character"),
     tags$div(class="bg-success",style="text-align:center;padding:5px;" ,
     tags$div(class="row", style="padding:5px;",
       tags$div(class="btn btn-xs btn-success",onclick="getLetter(this)" ,"A"),
@@ -55,9 +55,9 @@ shinyUI(pageWithSidebar(
   mainPanel(    
          tags$div(id="won", class="btn btn-lg bg-success", style="text-align:center;font-weight:bold;color:darkgreen;display:none;", "You Won" ),
          tags$div(id="lost",class="btn btn-lg bg-danger",style="text-align:center;font-weight:bold;color:darkred;display:none;", "You lost" ),
-         h3("Secret word"),
+         h3("Secret Word"),
          verbatimTextOutput("secret"),
-        h3("Processed letters"),
+        h3("Processed Characters"),
         verbatimTextOutput("oid1"),    
     h1("Statistics"),    
     plotOutput('myPlot'),
@@ -68,21 +68,21 @@ shinyUI(pageWithSidebar(
             tags$h4(class="modal-title","Usage Documentation")
        ),
        tags$div(class="modal-body",
-          tags$div(h2("Description"),tags$div("The present application requests letter inputs to the user in order to guess a secret word. During the process the user performance will be measured using the accuracy.")),
-          tags$div(h2("Rules"),tags$div("The user must select the letters of the secret word, once all the letters from the secret word are sent, the user will win."),
-                   tags$div("The user is allowed to make 9 mistakes, if tenth error is detected, the user will lose.")),
-          tags$div(h2("User Input"),tags$div("The Letters can be send using the small green buttons.", tags$div(class="btn btn-xs btn-success","A"),
+          tags$div(h2("Description"),tags$div("The present application requests character inputs to the user in order to guess a secret word. During the process the user performance will be measured using the accuracy.")),
+          tags$div(h2("Rules"),tags$div("The user must select the characters of the secret word, once all the characters from the secret word are sent, the user will win."),
+                   tags$div("The user is allowed to make 9 mistakes, if a tenth error is detected, the user will lose.")),
+          tags$div(h2("User Input"),tags$div("The characters can be sent using the small green buttons.", tags$div(class="btn btn-xs btn-success","A"),
                                              tags$div(class="btn btn-xs btn-success","B"),
                                              tags$div(class="btn btn-xs btn-success","C"),
-                                             tags$div("When pressed the button, the corresponding letter will be sent to the server and evaluated. Also the button will become disabled.")                                            
+                                             tags$div("When pressed the button, the corresponding character will be sent to the server and evaluated. Also the button will become disabled.")                                            
                                              )),
-          tags$div(h2("Application output"), tags$div("The used letters can be seen in the field 'Selected Letters', this field is readonly, so ther user cannot modify it"),
+          tags$div(h2("Application Output"), tags$div("The used characters can be seen in the field 'Selected Characters', this field is read only, so the user cannot modify it"),
                    tags$div("The field 'Result', will display the current accuracy. If this fields displays '-1', it will indicate that the user has lost."),
-                   tags$div("The section 'Secret word' will display the current progress of found letter for the secret work"),
-                   tags$div("The section 'Processed letters' will display the leters already sent to the server"),
-                   tags$div("The section 'Statistics' will display a plot reflecting the rights and wrongs from the user")
+                   tags$div("The 'Secret Word' section will display the current progress of found characters for the secret word"),
+                   tags$div("The 'Processed Characters' section will display the character already sent to the server"),
+                   tags$div("The 'Statistics' section will display a plot reflecting the rights and wrongs from the user")
           ),
-          tags$div(h2("Restarting the game"),tags$div("Once the user has lost or won the game a 'Try Again' button will be displayed. Additionaly the user can refresh the page to start again."))
+          tags$div(h2("Restarting the game"),tags$div("Once the user has lost or won the game a 'Try Again' button will be displayed. Additionally the user can refresh the page to start again."))
        ),
        tags$div(class="modal-footer", tags$button(type="button", class="btn btn-default", "data-dismiss"="modal","Close") )
       )
