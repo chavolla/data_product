@@ -49,7 +49,7 @@ shinyUI(pageWithSidebar(
              tags$div(class="btn btn-default", "data-toggle"="modal", "data-target"="#myModal" ,"Documentation") 
     ),
     tags$script("$('#newLetter').attr('disabled','true');$('#word').attr('disabled','true');"),
-    tags$script("$('#word').on('change',function(){val = $(this).val();if(val=='-1'){alert('You Lost');$('#refreshBtn').toggle();$('#lost').toggle();}else if(val.indexOf('%') != -1){alert('Congrats, You Won!!');$('#refreshBtn').toggle();$('#won').toggle();}})")
+    tags$script("$('#word').on('change',function(){val = $(this).val();if(val=='-1'){alert('You Lost');$('#refreshBtn').toggle();$('#lost').toggle();$('.btn-xs').attr('disabled',true);}else if(val.indexOf('%') != -1){alert('Congrats, You Won!!');$('#refreshBtn').toggle();$('#won').toggle();$('.btn-xs').attr('disabled',true);}})")
     
   ),
   mainPanel(    
