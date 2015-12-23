@@ -16,12 +16,12 @@ css: http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css
 Introduction
 ========================================================
 <div class="well roundC">
- The word guessing application is intended to test the user performance in guessing a word. The application basic functions can be described as:
+ The word guessing application is intended to test the user's performance in guessing a word. The application basic functions can be described as:
 </div>
  <div class="bg-info col-md-10 roundC" style="margin-left:50px;">
- - Selects randomly a word from the secrect word bank.
- - Allowing the user to send a desirec character to the server.
- - Processing the sent character in order to verify if the secret word has an occurence.
+ - Selecting randomly a word from the secret word bank.
+ - Allowing the user to send a desired character to the server.
+ - Processing the sent characters in order to verify if the secret word has an occurrence of the character.
  - Displaying the processing result  to the user
 </div>
 
@@ -32,7 +32,7 @@ Inner Functionality
   <div class="midcenter" style="text-align:center;">
 <img style="width:20%;height:20%;" src="https://raw.githubusercontent.com/chavolla/data_product/master/SecretWord.png"></img>
 </div>
-  The syste will analyze every character sent by the user performing a character by character comparison.
+  The system will analyze every character sent by the user performing a character by character comparison.
     
 
 ```{r, eval=FALSE}
@@ -41,8 +41,8 @@ Inner Functionality
   err<-0 #Errors are set to zero
   ok<-0  #Right characters are also set to Zero  
   cc<-rep("_",length(secretWord)) #This is the placeholder for the secret word
-  index<-1:length(secretWord) #The itarator for the secret word
-  index2<-1:length(characters) # The itarator for the entered characters
+  index<-1:length(secretWord) #The iterator for the secret word
+  index2<-1:length(characters) # The iterator for the entered characters
   for(i in index2){
     currentChar<-characters[i] #Take one input character
     found<-FALSE
