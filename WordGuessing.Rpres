@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<style>
+ .roundC {
+ border-radius: 25px;
+ padding:10px !important;
+ }
+</style>
+Word Guessing Application
+========================================================
+author: Edgar Chavolla
+date: `r date()`
+css: http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css
+**Developing Data Products Project**
+
+
+Introduction
+========================================================
+<div class="well roundC">
+ The word guessing application is intended to test the user performance in guessing a word. The application basic functions can be described as:
+</div>
+ <div class="bg-info col-md-10 roundC" style="margin-left:50px;">
+ - Selects randomly a word from the secrect word bank.
+ - Allowing the user to send a desirec character to the server.
+ - Processing the sent character in order to verify if the secret word has an occurence.
+ - Displaying the processing result  to the user
+</div>
+
+Inner Functionality
+========================================================
+<div class="bg-info col-md-12 roundC" style="margin-left:1px;width:100%;font-size:16px;line-height:20px;">
+  The system will load randomly a word and will display empty placeholders for each character.
+  <div class="midcenter" style="text-align:center;">
+<img style="width:20%;height:20%;" src="https://raw.githubusercontent.com/chavolla/data_product/master/SecretWord.png"></img>
+</div>
+  The syste will analyze every character sent by the user performing a character by character comparison.
+    
+
+```{r, eval=FALSE}
+#This is a code snippet, not the real code in the app (In the app the names are shorter), 
+#but it contain the main idea behind the logic
+  err<-0 #Errors are set to zero
+  ok<-0  #Right characters are also set to Zero  
+  cc<-rep("_",length(secretWord)) #This is the placeholder for the secret word
+  index<-1:length(secretWord) #The itarator for the secret word
+  index2<-1:length(characters) # The itarator for the entered characters
+  for(i in index2){
+    currentChar<-characters[i] #Take one input character
+    found<-FALSE
+    for(j in index){
+      if(currentChar == secretWord[j]){ #If the input character
+                                        #matches the secret word character
+        found<-TRUE
+        cc[j]=currentChar #The placeholder position is replaced by the current match
+      }
+    }
+    if(found){ok<-ok+1;}
+    else{err<-err+1;}
+  }
+
+
+```
+<div>The user can have a maximum of 9 error if a tenth error is entered, the user will lose seeing a <span class="bg-danger" style="text-align: center; font-weight: bold; color: darkred;width:auto">You lost</span> label. But if the user guess the word he will se a <span class="bg-success" style="text-align: center; font-weight: bold; color: darkgreen;">You won</span> label.  <br>
+Once the game is over, the user can retry the application by clicking the  
+<div id="refreshBtn" class="btn btn-warning" style="margin-top: 20px;" onclick="location.reload()">Try Again!</div> button
+</div> 
+</div>
+
+
+User entries
+========================================================
+<div style="font-size=18px;">
+The user has an interface that allows him to enter any character by clicking a set of buttons
+<div class="midcenter" style="text-align:center;" >
+<img style="width:25%;height:25%;" src="https://raw.githubusercontent.com/chavolla/data_product/master/UserInput.png"></img>
+</div>
+Also the user will have the option to activate the documentation by clicking the **Documentation** button. It displays a pop-up window where the user can read about the application usage.
+<div class="midcenter" style="text-align:center;" >
+<img src="https://raw.githubusercontent.com/chavolla/data_product/master/Documentation.png"></img>
+</div>
+</div>
+
+
+Application Output
+========================================================
+<div class="well roundC" style="font-size:22px;">
+The application sends in response of the user entry the current accuracy in a form of a divided bar plot.
+</div>
+<div style="height:50%;text-align:center;margin-top:-30px">
+```{r, echo=FALSE}
+ok<-8
+err<-2
+df<-data.frame(right=ok,wrong=err)
+par(mfrow=c(1, 1), mar=c(5, 5, 4, 10))
+          barplot(matrix(df),col=c('lightgreen','darkred'), main=paste0("Accuracy ",(ok*100/(ok+err)),"%" ), 
+                  legend=names(df) ,args.legend = list(x = "topright", bty = "n", inset=c(-0.25, 0)) )
+```
+<div>
